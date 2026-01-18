@@ -113,16 +113,25 @@
         </div>
     </section>
 
-    <!-- PORTFOLIO PLACEHOLDER -->
+    <!-- PORTFOLIO -->
     <section id="portfolio" class="py-20 bg-black text-center">
         <h3 class="text-4xl font-serif font-bold mb-8">Our Recent Work</h3>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-2 container mx-auto px-4">
-             <!-- Images replaced with colored placeholders for static demo -->
-            <div class="bg-gray-800 h-64 flex items-center justify-center text-gray-600 col-span-2 row-span-2">Wedding Highlights</div>
-            <div class="bg-gray-800 h-64 flex items-center justify-center text-gray-600">Bride Portrait</div>
-            <div class="bg-gray-800 h-64 flex items-center justify-center text-gray-600">Event Decor</div>
-            <div class="bg-gray-800 h-64 flex items-center justify-center text-gray-600">Candid Shot</div>
-            <div class="bg-gray-800 h-64 flex items-center justify-center text-gray-600">Corporate</div>
+            <div class="col-span-2 row-span-2 overflow-hidden rounded-lg">
+                <img src="asset/Wedding-highlight.png" alt="Wedding Highlights" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+            </div>
+            <div class="overflow-hidden rounded-lg">
+                <img src="asset/Bride-Portrait.png" alt="Bride Portrait" class="w-full h-64 object-cover hover:scale-105 transition duration-500">
+            </div>
+            <div class="overflow-hidden rounded-lg">
+                <img src="asset/Event-decore.png" alt="Event Decor" class="w-full h-64 object-cover hover:scale-105 transition duration-500">
+            </div>
+            <div class="overflow-hidden rounded-lg">
+                <img src="asset/Candid-Shot.png" alt="Candid Shot" class="w-full h-64 object-cover hover:scale-105 transition duration-500">
+            </div>
+            <div class="overflow-hidden rounded-lg">
+                <img src="asset/Corporae-Event.png" alt="Corporate Event" class="w-full h-64 object-cover hover:scale-105 transition duration-500">
+            </div>
         </div>
     </section>
 
@@ -176,27 +185,27 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <div>
                             <label class="block text-xs text-gray-500 mb-1">Name</label>
-                            <input type="text" name="name" required class="w-full bg-black border border-gray-700 rounded p-3 text-white focus:border-brand-gold outline-none">
+                            <input type="text" name="name" required class="w-full bg-gray-800 border border-gray-700 rounded p-3 text-white focus:border-brand-gold outline-none">
                         </div>
                         <div>
                             <label class="block text-xs text-gray-500 mb-1">Contact No</label>
-                            <input type="tel" name="contact" required class="w-full bg-black border border-gray-700 rounded p-3 text-white focus:border-brand-gold outline-none">
+                            <input type="tel" name="contact" required class="w-full bg-gray-800 border border-gray-700 rounded p-3 text-white focus:border-brand-gold outline-none">
                         </div>
                     </div>
 
                     <div class="mb-4">
                         <label class="block text-xs text-gray-500 mb-1">Email</label>
-                        <input type="email" name="email" required class="w-full bg-black border border-gray-700 rounded p-3 text-white focus:border-brand-gold outline-none">
+                        <input type="email" name="email" required class="w-full bg-gray-800 border border-gray-700 rounded p-3 text-white focus:border-brand-gold outline-none">
                     </div>
 
                     <div class="mb-4">
                         <label class="block text-xs text-gray-500 mb-1">Subject</label>
-                        <input type="text" name="subject" required class="w-full bg-black border border-gray-700 rounded p-3 text-white focus:border-brand-gold outline-none">
+                        <input type="text" name="subject" required class="w-full bg-gray-800 border border-gray-700 rounded p-3 text-white focus:border-brand-gold outline-none">
                     </div>
 
                     <div class="mb-6">
                         <label class="block text-xs text-gray-500 mb-1">Message</label>
-                        <textarea name="message" rows="4" required class="w-full bg-black border border-gray-700 rounded p-3 text-white focus:border-brand-gold outline-none"></textarea>
+                        <textarea name="message" rows="4" required class="w-full bg-gray-800 border border-gray-700 rounded p-3 text-white focus:border-brand-gold outline-none"></textarea>
                     </div>
 
                     <button type="submit" class="w-full bg-brand-gold text-black font-bold py-3 rounded hover:bg-white transition">Send Message</button>
@@ -212,9 +221,12 @@
             <p class="text-gray-500 text-sm">copyright © 2024 Noor Media Solution.</p>
             
             <!-- Admin Tiny Link -->
-            <div class="mt-4">
+            <div class="mt-4 flex justify-center gap-4">
                 <a href="admin.php" class="text-[10px] text-gray-800 hover:text-gray-600" target="_blank">
                     <i class="fas fa-lock"></i> Staff Login
+                </a>
+                <a href="deploy.php" class="text-[10px] text-gray-800 hover:text-gray-600" target="_blank">
+                    <i class="fas fa-rocket"></i> Deploy
                 </a>
             </div>
         </div>
