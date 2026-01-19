@@ -3,6 +3,7 @@
  * NOOR MEDIA SOLUTION - Multi-Repo GitHub to cPanel Sync & Revert
  * Path: /home/noorgeec/nm.noorgee.pk
  * Supports pulling from both grapheart247 and moon060781 repositories with Revert option.
+ * Added Push functionality to save local changes back to GitHub.
  */
 
 // --- CONFIGURATION ---
@@ -76,6 +77,32 @@ if ($action == 'sync') {
     echo "<b style='color:white; background:orange; padding:2px 10px;'>Revert Complete!</b>";
     echo "</div>";
     echo "<br><a href='deploy.php?source=$selected_key' style='color:yellow;'>&larr; Back to Dashboard</a>";
+} elseif ($action == 'push') {
+    echo "<div style='background:#000; padding:15px; border:1px solid #333;'>";
+    echo "Pushing local changes to <b>" . $selected_key . "</b>...<br>";
+    
+    // Update remote URL to the selected source
+    shell_exec("cd $repo_dir && git remote remove origin 2>&1");
+    shell_exec("cd $repo_dir && git remote add origin " . $source['url'] . " 2>&1");
+
+    // Configure user for commit
+    shell_exec("cd $repo_dir && git config user.email 'nms-deploy@noorgee.pk' 2>&1");
+    shell_exec("cd $repo_dir && git config user.name 'NMS Deploy Bot' 2>&1");
+
+    // Add, commit and push
+    $timestamp = date('Y-m-d H:i:s');
+    $commands = [
+        "cd $repo_dir",
+        "git add . 2>&1",
+        "git commit -m 'Manual push from cPanel - $timestamp' 2>&1",
+        "git push origin " . $source['branch'] . " 2>&1"
+    ];
+    $output = shell_exec(implode(" && ", $commands));
+    
+    echo "<pre style='background:#111; color:#ccc; padding:10px; border:1px solid #222;'>$output</pre>";
+    echo "<b style='color:white; background:blue; padding:2px 10px;'>Push Complete!</b>";
+    echo "</div>";
+    echo "<br><a href='deploy.php?source=$selected_key' style='color:yellow;'>&larr; Back to Dashboard</a>";
 } else {
     // UI for Source Selection and Actions
     echo "<h3>Select Source to Pull From:</h3>";
@@ -100,8 +127,9 @@ if ($action == 'sync') {
     // Action Buttons for the selected source
     echo "<hr style='border:1px solid #333; margin:20px 0;'>";
     echo "<h3>Actions for " . $source['label'] . ":</h3>";
-    echo "<div style='display:flex; gap:20px;'>";
-    echo "<a href='?action=sync&source=$selected_key' style='background:yellow; color:black; padding:15px 30px; text-decoration:none; font-weight:bold; border-radius:5px; box-shadow: 0 4px #990;'>🚀 Sync Now</a>";
+    echo "<div style='display:flex; gap:20px; flex-wrap:wrap;'>";
+    echo "<a href='?action=sync&source=$selected_key' style='background:yellow; color:black; padding:15px 30px; text-decoration:none; font-weight:bold; border-radius:5px; box-shadow: 0 4px #990;'>🚀 Sync Now (Pull)</a>";
+    echo "<a href='?action=push&source=$selected_key' onclick=\"return confirm('This will push all local files to GitHub. Are you sure?')\" style='background:#007bff; color:white; padding:15px 30px; text-decoration:none; font-weight:bold; border-radius:5px; box-shadow: 0 4px #0056b3;'>📤 Push to GitHub</a>";
     echo "<a href='?action=revert&source=$selected_key' onclick=\"return confirm('Are you sure you want to revert to the previous state?')\" style='background:red; color:white; padding:15px 30px; text-decoration:none; font-weight:bold; border-radius:5px; box-shadow: 0 4px #900;'>⏪ Revert Changes</a>";
     echo "</div>";
 }
@@ -109,7 +137,7 @@ if ($action == 'sync') {
 echo "<br><br><hr style='border:0; border-top:1px solid #333; margin:30px 0;'>";
 echo "<div style='display:flex; justify-content:space-between; align-items:center;'>";
 echo "<a href='index.php' style='color:#888; text-decoration:none;'>&larr; Back to Website</a>";
-echo "<div style='color:#555; font-size:11px;'>NMS Deployment Tool v3.0 | Multi-Source & Revert Enabled</div>";
+echo "<div style='color:#555; font-size:11px;'>NMS Deployment Tool v3.1 | Multi-Source, Revert & Push Enabled</div>";
 echo "</div>";
 echo "</body>";
 ?>
