@@ -49,8 +49,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 
 // --- DASHBOARD LOGIC ---
 
-// Get Filter Selection
-$filter = $_GET['filter'] ?? 'all';
+// Get Filter Selection - Default to 'nm' as requested
+$filter = $_GET['filter'] ?? 'nm';
 
 // Build Query Based on Filter
 $sql = "SELECT * FROM messages";
@@ -122,8 +122,12 @@ $result = $conn->query($sql);
                             if(strpos($row['site_source'], 'nm') !== false) $tagColor = 'bg-yellow-200 text-yellow-800';
                             if(strpos($row['site_source'], 'Dev') !== false) $tagColor = 'bg-blue-200 text-blue-800';
                             
+                            // Fix for incorrect date display (Nov 30, -0001)
+                            $date_val = $row["created_at"];
+                            $display_date = ($date_val && $date_val != '0000-00-00 00:00:00') ? date('M j, Y', strtotime($date_val)) : 'N/A';
+                            
                             echo "<tr class='border-b hover:bg-gray-50 transition'>";
-                            echo "<td class='p-4'>" . date('M j, Y', strtotime($row["created_at"])) . "</td>";
+                            echo "<td class='p-4'>" . $display_date . "</td>";
                             echo "<td class='p-4'><span class='text-xs font-bold px-2 py-1 rounded $tagColor'>" . htmlspecialchars($row["site_source"]) . "</span></td>";
                             echo "<td class='p-4 font-semibold'>" . htmlspecialchars($row["name"]) . "<br><span class='text-xs text-gray-500 font-normal'>" . htmlspecialchars($row["email"]) . "</span></td>";
                             echo "<td class='p-4'>" . htmlspecialchars($row["subject"]) . "</td>";
