@@ -15,12 +15,12 @@ $sources = [
     'grapheart247' => [
         'url' => "https://grapheart247:$token@github.com/grapheart247/NoorMedia.git",
         'branch' => 'master',
-        'label' => 'Grapheart247 (Main Repo - Master)'
+        'label' => 'Grapheart247 (Main Repo - Master )'
     ],
     'moon060781-bot' => [
         'url' => "https://moon060781-bot:$token@github.com/moon060781-bot/NoorMedia_m81.git",
         'branch' => 'master-m81',
-        'label' => 'Moon060781 (Bot Repo - Master-m81)'
+        'label' => 'Moon060781 (Bot Repo - Master-m81 )'
     ]
 ];
 
@@ -34,8 +34,10 @@ echo "<body style='background:#111; color:#0f0; font-family:monospace; padding:2
 echo "<h2 style='color:#C5A059;'>NMS System Sync & Deployment</h2>";
 
 echo "<div style='background:#222; padding:15px; border-radius:5px; border-left:5px solid #C5A059; margin-bottom:20px;'>";
-echo "<strong>Current Source:</strong> " . $source['label'] . "<br>";
-echo "<strong>Target Branch:</strong> " . $source['branch'] . "<br>";
+echo "<strong>Current Source:</strong> " . $source['label'] . "  
+";
+echo "<strong>Target Branch:</strong> " . $source['branch'] . "  
+";
 echo "</div>";
 
 // Check if git is initialized
@@ -47,7 +49,8 @@ if (!is_dir("$repo_dir/.git")) {
 // Handle Actions
 if ($action == 'sync') {
     echo "<div style='background:#000; padding:15px; border:1px solid #333;'>";
-    echo "Running Sync from <b>" . $selected_key . "</b>...<br>";
+    echo "Running Sync from <b>" . $selected_key . "</b>...  
+";
     
     // Update remote URL to the selected source
     shell_exec("cd $repo_dir && git remote remove origin 2>&1");
@@ -65,10 +68,12 @@ if ($action == 'sync') {
     echo "<pre style='background:#111; color:#ccc; padding:10px; border:1px solid #222;'>$output</pre>";
     echo "<b style='color:white; background:green; padding:2px 10px;'>Update Complete!</b>";
     echo "</div>";
-    echo "<br><a href='deploy.php?source=$selected_key' style='color:yellow;'>&larr; Back to Dashboard</a>";
+    echo "  
+<a href='deploy.php?source=$selected_key' style='color:yellow;'>&larr; Back to Dashboard</a>";
 } elseif ($action == 'revert') {
     echo "<div style='background:#000; padding:15px; border:1px solid #333;'>";
-    echo "Reverting to previous state...<br>";
+    echo "Reverting to previous state...  
+";
     
     // Revert to the state before the last hard reset or commit
     $output = shell_exec("cd $repo_dir && git reset --hard HEAD@{1} 2>&1");
@@ -76,10 +81,12 @@ if ($action == 'sync') {
     echo "<pre style='background:#111; color:#ccc; padding:10px; border:1px solid #222;'>$output</pre>";
     echo "<b style='color:white; background:orange; padding:2px 10px;'>Revert Complete!</b>";
     echo "</div>";
-    echo "<br><a href='deploy.php?source=$selected_key' style='color:yellow;'>&larr; Back to Dashboard</a>";
+    echo "  
+<a href='deploy.php?source=$selected_key' style='color:yellow;'>&larr; Back to Dashboard</a>";
 } elseif ($action == 'push') {
     echo "<div style='background:#000; padding:15px; border:1px solid #333;'>";
-    echo "Pushing local changes to <b>" . $selected_key . "</b>...<br>";
+    echo "Pushing local changes to <b>" . $selected_key . "</b>...  
+";
     
     // Update remote URL to the selected source
     shell_exec("cd $repo_dir && git remote remove origin 2>&1");
@@ -102,7 +109,8 @@ if ($action == 'sync') {
     echo "<pre style='background:#111; color:#ccc; padding:10px; border:1px solid #222;'>$output</pre>";
     echo "<b style='color:white; background:blue; padding:2px 10px;'>Push Complete!</b>";
     echo "</div>";
-    echo "<br><a href='deploy.php?source=$selected_key' style='color:yellow;'>&larr; Back to Dashboard</a>";
+    echo "  
+<a href='deploy.php?source=$selected_key' style='color:yellow;'>&larr; Back to Dashboard</a>";
 } else {
     // UI for Source Selection and Actions
     echo "<h3>Select Source to Pull From:</h3>";
@@ -134,7 +142,9 @@ if ($action == 'sync') {
     echo "</div>";
 }
 
-echo "<br><br><hr style='border:0; border-top:1px solid #333; margin:30px 0;'>";
+echo "  
+  
+<hr style='border:0; border-top:1px solid #333; margin:30px 0;'>";
 echo "<div style='display:flex; justify-content:space-between; align-items:center;'>";
 echo "<a href='index.php' style='color:#888; text-decoration:none;'>&larr; Back to Website</a>";
 echo "<div style='color:#555; font-size:11px;'>NMS Deployment Tool v3.1 | Multi-Source, Revert & Push Enabled</div>";
