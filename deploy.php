@@ -17,15 +17,15 @@ $sources = [
         'branch' => 'master',
         'label' => 'Grapheart247 (Main Repo - Master)'
     ],
-    'moon060781' => [
+    'moon060781-bot' => [
         'url' => "https://moon060781-bot:$token@github.com/moon060781-bot/NoorMedia_m81.git",
-        'branch' => 'NoorMedia_m81',
-        'label' => 'Moon060781 (Bot Repo - NoorMedia_m81)'
+        'branch' => 'master-m81',
+        'label' => 'Moon060781 (Bot Repo - Master-m81)'
     ]
 ];
 
-// Get selected source from URL, default to 'moon060781'
-$selected_key = isset($_GET['source']) && array_key_exists($_GET['source'], $sources) ? $_GET['source'] : 'moon060781';
+// Get selected source from URL, default to 'moon060781-bot'
+$selected_key = isset($_GET['source']) && array_key_exists($_GET['source'], $sources) ? $_GET['source'] : 'moon060781-bot';
 $source = $sources[$selected_key];
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 // ---------------------
